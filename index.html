@@ -123,9 +123,9 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:30px}.footer-
 
 <div id="leadGate" class="demo-overlay" aria-modal="true" role="dialog" aria-labelledby="leadTitle">
   <div class="demo-modal">
-    <div class="demo-modal-head"><img src="assets/app-logo.webp" alt="PupScene Studio"><div><b>PupScene Studio Demo</b><div class="small">10 storyboard generations included</div></div></div>
+    <div class="demo-modal-head"><img src="assets/app-logo.webp" alt="PupScene Studio"><div><b>PupScene Studio Demo</b><div class="small">Up to 10 trial storyboard generations</div></div></div>
     <h2 id="leadTitle">Try PupScene before you buy.</h2>
-    <p>Enter your email to start the demo. We use it to remember your demo allowance and understand demo visits and usage so we can improve PupScene Studio.</p>
+    <p>Enter your email to start the demo. Demo access is separate from the Free plan: the demo includes up to 10 trial storyboard generations, while a regular Free account receives 1 storyboard generation per day.</p>
     <div class="field"><label for="demoEmail">Email address</label><input id="demoEmail" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com"></div>
     <div class="actions"><button class="btn primary" id="startDemo">Start my demo</button></div>
     <div id="leadError" class="demo-consent"></div>
@@ -138,7 +138,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:30px}.footer-
     <button class="modal-close" id="closeConversion" aria-label="Close">×</button>
     <div class="demo-modal-head"><img src="assets/app-logo.webp" alt="PupScene Studio"><div><b>Thank you for trying PupScene</b><div class="small" id="conversionSub">We hope your next project starts with a clearer plan.</div></div></div>
     <h2 id="conversionTitle">Keep creating. Your next idea deserves a strong storyboard.</h2>
-    <p>Thank you for joining the demo. We hope PupScene helps you turn more product ideas into focused, consistent AI-video projects. A quick note from you will help us improve the experience for creators like you.</p>
+    <p>Thank you for joining the demo. We hope PupScene helps you turn more product ideas into focused, consistent AI-video projects. A quick note from you will help us improve the experience for creators like you. When you are ready to continue, choose Free, Creator, or Unlimited below.</p>
     <div class="feedback-grid">
       <div class="field"><label for="demoRating">Quick rating</label><select id="demoRating"><option value="">Select</option><option value="5">5 — Excellent</option><option value="4">4 — Very good</option><option value="3">3 — Good</option><option value="2">2 — Needs work</option><option value="1">1 — Difficult</option></select></div>
       <div class="field"><label for="demoFeedback">Feedback</label><textarea id="demoFeedback" placeholder="What did you like, what was confusing, or what would make PupScene more useful?"></textarea></div>
@@ -146,9 +146,11 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:30px}.footer-
     <div class="actions"><button class="btn peach" id="sendDemoFeedback">Send feedback</button><button class="btn ghost" id="continueDemo">Continue demo</button></div>
     <div id="feedbackThanks" class="demo-consent"></div>
     <div class="pricing" aria-label="PupScene pricing">
-      <a class="price-card" id="pricePack" href="#"><span class="price">$1</span><small>One-time access</small><b>3 Storyboard Generations</b></a>
-      <a class="price-card featured" id="priceMonthly" href="#"><span class="price">$7.99</span><small>per month</small><b>Unlimited Storyboard Generation</b></a>
+      <a class="price-card" id="priceFree" href="#"><span class="price">Free</span><small>Resets daily</small><b>1 Storyboard Generation / day</b></a>
+      <div class="price-card"><span class="price">$1</span><small>30-day access</small><b>5 Storyboard Generations</b><div class="actions" style="margin-top:10px"><a class="btn ghost slim" id="priceFiveOnce" href="#">One-Time</a><a class="btn peach slim" id="priceFiveSub" href="#">Subscribe</a></div></div>
+      <div class="price-card featured"><span class="price">$7.99</span><small>30-day access</small><b>Unlimited Storyboard Generation</b><div class="actions" style="margin-top:10px"><a class="btn ghost slim" id="priceUnlimitedOnce" href="#">One-Time</a><a class="btn peach slim" id="priceUnlimitedSub" href="#">Subscribe</a></div></div>
     </div>
+    <div class="demo-consent" style="margin-top:10px">Free is for regular account use and resets daily. Paid one-time access lasts 30 days; subscription renews monthly. Third-party AI-video credits are separate.</div>
   </div>
 </div>
 <div id="demoToast" class="demo-toast" role="status" aria-live="polite"></div>
@@ -176,7 +178,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:30px}.footer-
     <span class="eyebrow">Interactive product demo</span>
     <h1>Make product scenes feel real.</h1>
     <p>Build conversion-focused storylines, realistic master prompts, continuity references and provider-aware scene prompts for the AI video tool you choose.</p>
-    <div class="hero-tags"><span>Ad story frameworks</span><span>Master realism prompt</span><span>10 sec max</span><span>Provider aware</span></div><div class="demo-limit-note">Demo allowance: up to <b>10 successful storyboard generations</b>. At the 4th successful generation we’ll ask for quick feedback and show purchase options.</div>
+    <div class="hero-tags"><span>Ad story frameworks</span><span>Master realism prompt</span><span>10 sec max</span><span>Provider aware</span></div><div class="demo-limit-note">Demo allowance: up to <b>10 successful trial storyboard generations</b>. This is separate from the Free plan, which provides 1 storyboard generation per day. At the 4th successful demo generation we’ll ask for quick feedback and show continuation options.</div>
   </div>
   <div class="hero-pup" id="heroPup" role="button" tabindex="0" aria-label="Draggable PupScene puppy mascot. Tap for bark."><img src="assets/pupscene-puppy.webp" alt="PupScene puppy mascot"></div><button class="hero-pup-reset" id="resetPup" type="button">Reset pup</button><div class="hero-pup-hint">Drag the pup</div>
 </section>
@@ -268,7 +270,7 @@ const INTRO_KEY='pupscene-intro-seen-v9';
 
 const DEMO_CFG=window.PUPSCENE_DEMO_CONFIG||{};
 const DEMO_LIMIT=Number(DEMO_CFG.demoLimit||10);
-const CHECKOUT_URL=DEMO_CFG.checkoutUrl||'https://pupscenestudio.site/payment.html';
+const CHECKOUT_URL=DEMO_CFG.checkoutUrl||'https://www.pupscenestudio.site/checkout.html';
 const EVENT_ENDPOINT=DEMO_CFG.eventEndpoint||'/api/demo-event';
 const DEMO_ID_KEY='pupscene-demo-identity-v1';
 const DEMO_USAGE_PREFIX='pupscene-demo-usage:';
@@ -280,7 +282,7 @@ function validEmail(v){return /^\S+@\S+\.\S+$/.test(String(v||'').trim())}
 function emailKey(email){let h=2166136261;for(const c of email.toLowerCase()){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
 function getDemoUsage(email){try{return JSON.parse(localStorage.getItem(DEMO_USAGE_PREFIX+emailKey(email)))||{generations:0,visits:0}}catch(e){return{generations:0,visits:0}}}
 function saveDemoUsage(){if(!demoIdentity)return;try{localStorage.setItem(DEMO_USAGE_PREFIX+emailKey(demoIdentity.email),JSON.stringify(demoUsage))}catch(e){}}
-function checkoutFor(plan){const u=new URL(CHECKOUT_URL,location.href);u.searchParams.set('plan',plan);if(demoIdentity?.email)u.searchParams.set('email',demoIdentity.email);return u.toString()}
+function checkoutFor(plan,billingType){const u=new URL(CHECKOUT_URL,location.href);u.searchParams.set('plan',plan);if(billingType)u.searchParams.set('billingType',billingType);if(demoIdentity?.email)u.searchParams.set('email',demoIdentity.email);return u.toString()}
 function updateDemoCounter(){const left=Math.max(0,DEMO_LIMIT-(demoUsage.generations||0));const el=$('demoCounter');if(el)el.textContent=`${left} storyboard generation${left===1?'':'s'} left`;if($('generate')){$('generate').disabled=left<=0;$('generate').textContent=left<=0?'Demo limit reached':'Generate Storyboard'}}
 function toast(msg){const t=$('demoToast');if(!t)return;t.textContent=msg;t.classList.add('show');clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.remove('show'),3500)}
 function eventPayload(name,data={}){return{event:name,email:demoIdentity?.email||null,session_id:sessionStorage.getItem('pupscene-demo-session')||'',ts:new Date().toISOString(),path:location.pathname,referrer:document.referrer||null,viewport:`${innerWidth}x${innerHeight}`,user_agent:navigator.userAgent,...data}}
@@ -373,12 +375,12 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.se
   try{demoIdentity=JSON.parse(localStorage.getItem(DEMO_ID_KEY)||'null')}catch(e){}
   if(demoIdentity?.email){demoUsage=getDemoUsage(demoIdentity.email);demoUsage.visits=(demoUsage.visits||0)+1;saveDemoUsage();hideLeadGate();trackEvent('demo_visit',{visit_number:demoUsage.visits,generation_number:demoUsage.generations||0});serverAllowance()}else{showLeadGate();trackEvent('demo_visit_anonymous')}
   updateDemoCounter();
-  $('checkoutTop').href=checkoutFor('unlimited-monthly');$('pricePack').href=checkoutFor('3-storyboards');$('priceMonthly').href=checkoutFor('unlimited-monthly');
+  $('checkoutTop').href=checkoutFor('unlimited-monthly','subscription');$('priceFree').href=checkoutFor('free-daily','free');$('priceFiveOnce').href=checkoutFor('five-monthly','one-time');$('priceFiveSub').href=checkoutFor('five-monthly','subscription');$('priceUnlimitedOnce').href=checkoutFor('unlimited-monthly','one-time');$('priceUnlimitedSub').href=checkoutFor('unlimited-monthly','subscription');
   $('startDemo').addEventListener('click',()=>{const email=$('demoEmail').value.trim().toLowerCase();if(!validEmail(email)){$('leadError').textContent='Please enter a valid email address.';return}demoIdentity={email,joinedAt:new Date().toISOString()};localStorage.setItem(DEMO_ID_KEY,JSON.stringify(demoIdentity));demoUsage=getDemoUsage(email);demoUsage.visits=(demoUsage.visits||0)+1;saveDemoUsage();$('leadError').textContent='';hideLeadGate();updateDemoCounter();trackEvent('lead_captured',{visit_number:demoUsage.visits,generation_number:demoUsage.generations||0});serverAllowance();toast('Demo ready — you have '+Math.max(0,DEMO_LIMIT-demoUsage.generations)+' storyboard generations left.')});
   $('demoEmail').addEventListener('keydown',e=>{if(e.key==='Enter')$('startDemo').click()});
   $('closeConversion').addEventListener('click',closeConversion);$('continueDemo').addEventListener('click',closeConversion);
   $('sendDemoFeedback').addEventListener('click',()=>{const rating=$('demoRating').value,feedback=$('demoFeedback').value.trim();trackEvent('demo_feedback',{rating,feedback,generation_number:demoUsage.generations||0});$('feedbackThanks').textContent='Thank you — your feedback helps us improve PupScene Studio.';toast('Feedback received. Thank you!')});
-  [$('pricePack'),$('priceMonthly'),$('checkoutTop')].forEach(a=>a.addEventListener('click',()=>trackEvent('checkout_clicked',{plan:new URL(a.href).searchParams.get('plan'),generation_number:demoUsage.generations||0})));
+  [$('priceFree'),$('priceFiveOnce'),$('priceFiveSub'),$('priceUnlimitedOnce'),$('priceUnlimitedSub'),$('checkoutTop')].forEach(a=>a.addEventListener('click',()=>{const u=new URL(a.href);trackEvent('checkout_clicked',{plan:u.searchParams.get('plan'),billing_type:u.searchParams.get('billingType'),generation_number:demoUsage.generations||0})}));
   document.addEventListener('mouseout',e=>{if(e.clientY<=0&&!e.relatedTarget)maybeExitIntent()});
   history.pushState({pupDemo:true},'',location.href);window.addEventListener('popstate',()=>{if(demoIdentity&&(demoUsage.generations||0)<4){showConversion('exit');history.pushState({pupDemo:true},'',location.href)}});
   window.addEventListener('beforeunload',e=>{if(demoIdentity&&(demoUsage.generations||0)<4&&!conversionShown){e.preventDefault();e.returnValue='';}});
